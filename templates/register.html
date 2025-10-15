@@ -1,0 +1,49 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block extra_css %}{% endblock %}
+
+{% block content %}
+<div class="auth-window">
+  <h1>Регистрация</h1>
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="input-box">
+      <label for="id_last_name">Фамилия</label>
+      <input type="text" name="last_name" id="id_last_name" required>
+    </div>
+    <div class="input-box">
+      <label for="id_first_name">Имя</label>
+      <input type="text" name="first_name" id="id_first_name" required>
+    </div>
+    <div class="input-box">
+      <label for="id_group">Группа (выберите из списка)</label>
+      <select name="group" id="id_group">
+        <option value="">---</option>
+        {% for g in form.fields.group.queryset %}
+        <option value="{{ g.id }}">{{ g.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="input-box">
+      <label for="id_custom_group">или введите свою группу</label>
+      <input type="text" name="custom_group" id="id_custom_group" placeholder="Например, К3-35Б">
+    </div>
+    <div class="input-box">
+      <label for="id_password1">Пароль</label>
+      <input type="password" name="password1" id="id_password1" required>
+    </div>
+    <div class="input-box">
+      <label for="id_password2">Подтверждение пароля</label>
+      <input type="password" name="password2" id="id_password2" required>
+    </div>
+
+    {% if form.errors %}
+    <div class="form-errors">{{ form.errors }}</div>
+    {% endif %}
+
+    <button type="submit" class="btn">Зарегистрироваться</button>
+  </form>
+</div>
+{% endblock %}

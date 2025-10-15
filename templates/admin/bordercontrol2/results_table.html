@@ -1,0 +1,196 @@
+{% extends "admin/base_site.html" %}
+{% load custom_filters %}
+
+{% block content %}
+<style>
+  .solutiontable { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  .solutiontable th, .solutiontable td { border: 1px solid #ddd; padding: 6px 8px; text-align: center; }
+  .solutiontable thead th { background: #f5f5f5; }
+  .namevar { font-weight: 600; text-align: left; }
+  .character-comparison { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size: 0.95rem; letter-spacing: 0.03em; }
+  .correct-char { color: #28a745; font-weight: 600; }
+  .incorrect-char { color: #dc3545; font-weight: 600; }
+</style>
+
+<div class="results">
+  <h1>Результаты РК №2</h1>
+  <p><strong>Пользователь:</strong> {{ object.user }}</p>
+  <p><strong>A:</strong> {{ object.number1 }}</p>
+  <p><strong>B:</strong> {{ object.number2 }}</p>
+  <p><strong>Оценка:</strong> {{ object.result_number }}</p>
+  <p><strong>Баллы:</strong> {{ object.rating }}</p>
+
+  <h2>Коды чисел</h2>
+  <div class="tables-container">
+    <table class="solutiontable">
+      <thead>
+        <tr>
+          <th>Переменная</th>
+          <th>Прямой</th>
+          <th>Обратный</th>
+          <th>Дополнительный</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="namevar">A</td>
+          <td class="character-comparison">{{ user_answers.straight_1|compare_chars:answers.straight_1|safe }}</td>
+          <td class="character-comparison">{{ user_answers.reversed_1|compare_chars:answers.reversed_1|safe }}</td>
+          <td class="character-comparison">{{ user_answers.additional_1|compare_chars:answers.additional_1|safe }}</td>
+        </tr>
+        <tr>
+          <td class="namevar">-A</td>
+          <td class="character-comparison">{{ user_answers.straight_2|compare_chars:answers.straight_2|safe }}</td>
+          <td class="character-comparison">{{ user_answers.reversed_2|compare_chars:answers.reversed_2|safe }}</td>
+          <td class="character-comparison">{{ user_answers.additional_2|compare_chars:answers.additional_2|safe }}</td>
+        </tr>
+        <tr>
+          <td class="namevar">B</td>
+          <td class="character-comparison">{{ user_answers.straight_3|compare_chars:answers.straight_3|safe }}</td>
+          <td class="character-comparison">{{ user_answers.reversed_3|compare_chars:answers.reversed_3|safe }}</td>
+          <td class="character-comparison">{{ user_answers.additional_3|compare_chars:answers.additional_3|safe }}</td>
+        </tr>
+        <tr>
+          <td class="namevar">-B</td>
+          <td class="character-comparison">{{ user_answers.straight_4|compare_chars:answers.straight_4|safe }}</td>
+          <td class="character-comparison">{{ user_answers.reversed_4|compare_chars:answers.reversed_4|safe }}</td>
+          <td class="character-comparison">{{ user_answers.additional_4|compare_chars:answers.additional_4|safe }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="solutiontable">
+      <thead>
+        <tr>
+          <th>Переменная</th>
+          <th>Прямой</th>
+          <th>Обратный</th>
+          <th>Дополнительный</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="namevar">A * 2<sup>-n</sup></td>
+          <td class="character-comparison">{{ user_answers.straight_5|compare_chars:answers.straight_5|safe }}</td>
+          <td class="character-comparison">{{ user_answers.reversed_5|compare_chars:answers.reversed_5|safe }}</td>
+          <td class="character-comparison">{{ user_answers.additional_5|compare_chars:answers.additional_5|safe }}</td>
+        </tr>
+        <tr>
+          <td class="namevar">A * 2<sup>m</sup></td>
+          <td class="character-comparison">{{ user_answers.straight_6|compare_chars:answers.straight_6|safe }}</td>
+          <td class="character-comparison">{{ user_answers.reversed_6|compare_chars:answers.reversed_6|safe }}</td>
+          <td class="character-comparison">{{ user_answers.additional_6|compare_chars:answers.additional_6|safe }}</td>
+        </tr>
+        <tr>
+          <td class="namevar">A * 2<sup>q</sup></td>
+          <td class="character-comparison">{{ user_answers.straight_7|compare_chars:answers.straight_7|safe }}</td>
+          <td class="character-comparison">{{ user_answers.reversed_7|compare_chars:answers.reversed_7|safe }}</td>
+          <td class="character-comparison">{{ user_answers.additional_7|compare_chars:answers.additional_7|safe }}</td>
+        </tr>
+        <tr>
+          <td class="namevar">B * 2<sup>-n</sup></td>
+          <td class="character-comparison">{{ user_answers.straight_8|compare_chars:answers.straight_8|safe }}</td>
+          <td class="character-comparison">{{ user_answers.reversed_8|compare_chars:answers.reversed_8|safe }}</td>
+          <td class="character-comparison">{{ user_answers.additional_8|compare_chars:answers.additional_8|safe }}</td>
+        </tr>
+        <tr>
+          <td class="namevar">B * 2<sup>m</sup></td>
+          <td class="character-comparison">{{ user_answers.straight_9|compare_chars:answers.straight_9|safe }}</td>
+          <td class="character-comparison">{{ user_answers.reversed_9|compare_chars:answers.reversed_9|safe }}</td>
+          <td class="character-comparison">{{ user_answers.additional_9|compare_chars:answers.additional_9|safe }}</td>
+        </tr>
+        <tr>
+          <td class="namevar">B * 2<sup>q</sup></td>
+          <td class="character-comparison">{{ user_answers.straight_10|compare_chars:answers.straight_10|safe }}</td>
+          <td class="character-comparison">{{ user_answers.reversed_10|compare_chars:answers.reversed_10|safe }}</td>
+          <td class="character-comparison">{{ user_answers.additional_10|compare_chars:answers.additional_10|safe }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="solutiontable">
+      <thead>
+        <tr>
+          <th></th>
+          <th>A(доп) + B(доп)</th>
+          <th>-A(доп) + B(доп)</th>
+          <th>A(доп) - B(доп)</th>
+          <th>-A(доп) - B(доп)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="namevar">Промежуточный</td>
+          <td class="character-comparison">{{ user_answers.temp_11|compare_chars:answers.temp_11|safe }}</td>
+          <td class="character-comparison">{{ user_answers.temp_12|compare_chars:answers.temp_12|safe }}</td>
+          <td class="character-comparison">{{ user_answers.temp_13|compare_chars:answers.temp_13|safe }}</td>
+          <td class="character-comparison">{{ user_answers.temp_14|compare_chars:answers.temp_14|safe }}</td>
+        </tr>
+        <tr>
+          <td class="namevar">Коррекция</td>
+          <td class="character-comparison">{{ user_answers.correction_11|compare_chars:answers.correction_11|safe }}</td>
+          <td class="character-comparison">{{ user_answers.correction_12|compare_chars:answers.correction_12|safe }}</td>
+          <td class="character-comparison">{{ user_answers.correction_13|compare_chars:answers.correction_13|safe }}</td>
+          <td class="character-comparison">{{ user_answers.correction_14|compare_chars:answers.correction_14|safe }}</td>
+        </tr>
+        <tr>
+          <td class="namevar">Результат</td>
+          <td class="character-comparison">{{ user_answers.result_11|compare_chars:answers.result_11|safe }}</td>
+          <td class="character-comparison">{{ user_answers.result_12|compare_chars:answers.result_12|safe }}</td>
+          <td class="character-comparison">{{ user_answers.result_13|compare_chars:answers.result_13|safe }}</td>
+          <td class="character-comparison">{{ user_answers.result_14|compare_chars:answers.result_14|safe }}</td>
+        </tr>
+        <tr>
+          <td class="namevar">Осмысление</td>
+          <td class="character-comparison">{{ user_answers.realizing_11|compare_chars:answers.realizing_11|safe }}</td>
+          <td class="character-comparison">{{ user_answers.realizing_12|compare_chars:answers.realizing_12|safe }}</td>
+          <td class="character-comparison">{{ user_answers.realizing_13|compare_chars:answers.realizing_13|safe }}</td>
+          <td class="character-comparison">{{ user_answers.realizing_14|compare_chars:answers.realizing_14|safe }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="solutiontable">
+      <thead>
+        <tr>
+          <th></th>
+          <th>A(обр) + B(обр)</th>
+          <th>-A(обр) + B(обр)</th>
+          <th>A(обр) - B(обр)</th>
+          <th>-A(обр) - B(обр)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="namevar">Промежуточный</td>
+          <td class="character-comparison">{{ user_answers.temp_15|compare_chars:answers.temp_15|safe }}</td>
+          <td class="character-comparison">{{ user_answers.temp_16|compare_chars:answers.temp_16|safe }}</td>
+          <td class="character-comparison">{{ user_answers.temp_17|compare_chars:answers.temp_17|safe }}</td>
+          <td class="character-comparison">{{ user_answers.temp_18|compare_chars:answers.temp_18|safe }}</td>
+        </tr>
+        <tr>
+          <td class="namevar">Коррекция</td>
+          <td class="character-comparison">{{ user_answers.correction_15|compare_chars:answers.correction_15|safe }}</td>
+          <td class="character-comparison">{{ user_answers.correction_16|compare_chars:answers.correction_16|safe }}</td>
+          <td class="character-comparison">{{ user_answers.correction_17|compare_chars:answers.correction_17|safe }}</td>
+          <td class="character-comparison">{{ user_answers.correction_18|compare_chars:answers.correction_18|safe }}</td>
+        </tr>
+        <tr>
+          <td class="namevar">Результат</td>
+          <td class="character-comparison">{{ user_answers.result_15|compare_chars:answers.result_15|safe }}</td>
+          <td class="character-comparison">{{ user_answers.result_16|compare_chars:answers.result_16|safe }}</td>
+          <td class="character-comparison">{{ user_answers.result_17|compare_chars:answers.result_17|safe }}</td>
+          <td class="character-comparison">{{ user_answers.result_18|compare_chars:answers.result_18|safe }}</td>
+        </tr>
+        <tr>
+          <td class="namevar">Осмысление</td>
+          <td class="character-comparison">{{ user_answers.realizing_15|compare_chars:answers.realizing_15|safe }}</td>
+          <td class="character-comparison">{{ user_answers.realizing_16|compare_chars:answers.realizing_16|safe }}</td>
+          <td class="character-comparison">{{ user_answers.realizing_17|compare_chars:answers.realizing_17|safe }}</td>
+          <td class="character-comparison">{{ user_answers.realizing_18|compare_chars:answers.realizing_18|safe }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

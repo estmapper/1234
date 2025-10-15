@@ -1,0 +1,234 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block extra_css %}{% endblock %}
+
+{% block content %}
+    <div class="container mt-6">
+        <div class="test2block">
+            <form method="post" id="end_solution">
+                {% csrf_token %}
+            <div class="taskblock" id="first_solution">
+                <div class="task">
+                    <h1 class="tasknumber">
+                        Задание 1
+                    </h1>
+                    <p class="text_of_task">
+                        Представьте в восьмиразрядной сетке числа A ({{ number_1 }}), B ({{ number_2 }}), −A, −B, используя прямой, обратный и дополнительный коды. Результаты представьте в таблице, левый столбец которой соответствует заданному числу, а оставшиеся три — его представлению в прямом, обратном и дополнительном кодах.
+                    </p>
+                </div>
+                    <div class="solution">
+                        <table class="solutiontable">
+                            <thead>
+                            <tr id="name_row_table1">
+                                <th>Переменная</th>
+                                <th>Прямой</th>
+                                <th>Обратный</th>
+                                <th>Дополнительный</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr id="first_row_table1">
+                            <td class="namevar">A</td>
+                            <td>{{ form.straight_1 }}</td>
+                            <td id="positive_a_reversed_1">{{ form.reversed_1 }}</td>
+                            <td id="positive_a_additional_1">{{ form.additional_1 }}</td>
+                        </tr>
+                        <tr id="second_row_table1">
+                            <td class="namevar">-A</td>
+                            <td>{{ form.straight_2 }}</td>
+                            <td id="negative_a_reversed_1">{{ form.reversed_2 }}</td>
+                            <td id="negative_a_additional_1">{{ form.additional_2 }}</td>
+                        </tr>
+                        <tr id="third_row_table1">
+                            <td class="namevar">B</td>
+                            <td>{{ form.straight_3 }}</td>
+                            <td id="positive_b_reversed_1">{{ form.reversed_3 }}</td>
+                            <td id="positive_b_additional_1">{{ form.additional_3 }}</td>
+                        </tr>
+                        <tr id="fourth_row_table1">
+                            <td class="namevar">-B</td>
+                            <td>{{ form.straight_4 }}</td>
+                            <td id="negative_b_reversed_1">{{ form.reversed_4 }}</td>
+                            <td id="negative_b_additional_1">{{ form.additional_4 }}</td>
+                        </tr>
+                        </tbody>
+                        </table>
+                        {% comment %} <button type="submit" id="save-button">сохранить</button> {% endcomment %}
+                    </div>
+            </div>
+            <div class="taskblock" id="second_solution">
+                
+                <div class="task">
+                    <h1 class="tasknumber">
+                        Задание 2    
+                    </h1>
+                    <p class="text_of_task">
+                        Умножьте числа A ({{ number_1 }}) и B({{ number_2 }}) на 2 в степени {{ degree_1 }}, {{ degree_2 }}, {{ degree_3 }}. <br/>Результат представьте в таблице справа.
+                    </p>
+                </div>
+                    <div class="solution">
+                        <table class="solutiontable">
+                            <thead>
+                            <tr id="name_row_table2">
+                                <th>Переменная</th>
+                                <th>Прямой</th>
+                                <th>Обратный</th>
+                                <th>Дополнительный</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr id="first_row_table2">
+                                <td class="namevar">A * 2 <sup>{{ degree_1 }}</sup></td>
+                                <td>{{ form.straight_5 }}</td>
+                                <td>{{ form.reversed_5 }}</td>
+                                <td>{{ form.additional_5 }}</td>
+                            </tr>
+                            <tr id="second_row_table2">
+                                <td class="namevar">A * 2 <sup>{{ degree_2 }}</sup></td>
+                                <td>{{ form.straight_6 }}</td>
+                                <td>{{ form.reversed_6 }}</td>
+                                <td>{{ form.additional_6 }}</td>
+                            </tr>
+                            <tr id="third_row_table2">
+                                <td class="namevar">A * 2 <sup>{{ degree_3 }}</sup></td>
+                                <td>{{ form.straight_7 }}</td>
+                                <td>{{ form.reversed_7 }}</td>
+                                <td>{{ form.additional_7 }}</td>
+                            </tr>
+                            <tr id="thourd_row_table2">
+                                <td class="namevar">B * 2 <sup>{{ degree_1 }}</sup></td>
+                                <td>{{ form.straight_8 }}</td>
+                                <td>{{ form.reversed_8 }}</td>
+                                <td>{{ form.additional_8 }}</td>
+                            </tr>
+                            <tr id="fifth_row_table2">
+                                <td class="namevar">B * 2 <sup>{{ degree_2 }}</sup></td>
+                                <td>{{ form.straight_9 }}</td>
+                                <td>{{ form.reversed_9 }}</td>
+                                <td>{{ form.additional_9 }}</td>
+                            </tr>
+                            <tr id="sixth_row_table2">
+                                <td class="namevar">B * 2 <sup>{{ degree_3 }}</sup></td>
+                                <td>{{ form.straight_10 }}</td>
+                                <td>{{ form.reversed_10 }}</td>
+                                <td>{{ form.additional_10 }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    {% comment %} <button type="submit" id="save-button_2">сохранить</button> {% endcomment %}
+                </div>
+            </div>
+            <div class="taskblock" id="third_solution">
+                {% csrf_token %}
+                <div class="task">
+                    <h1 class="tasknumber">
+                        Задание 3
+                    </h1>
+                    <p class="text_of_task">
+                        Выполните следующие примеры:<br/>[A]<sub>д</sub>+[B]<sub>д</sub>, <br/>[−A]<sub>д</sub>+[B]<sub>д</sub>, <br/>[A]<sub>о</sub>+[−B]<sub>о</sub>, <br/>[−A]<sub>о</sub>+[−B]<sub>о</sub>;<br/>[A]<sub>п</sub>*[B]<sub>п</sub> любым способом.<br/>Результат представьте в таблице справа.
+                    </p>
+                </div>
+                    <div class="solution">
+                        <table class="solutiontable">
+                        <thead>
+                        <tr id="name_row_table3">
+                            <th>Пример</th>
+                            <th>[A]<sub>д</sub>+[B]<sub>д</sub></th>
+                            <th>[−A]<sub>д</sub>+[B]<sub>д</sub></th>
+                            <th>[A]<sub>о</sub>+[−B]<sub>о</sub></th>
+                            <th>[−A]<sub>о</sub>+[−B]<sub>о</sub></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr id="third_row_table3">
+                            <td class="Первое слагаемое">Промежуточный</td>
+                            <td id="positive_a_additional"></td>
+                            <td id="negative_a_additional"></td>
+                            <td id="positive_a_reversed"></td>
+                            <td id="negative_a_reversed"></td>
+                        </tr>
+                        <tr id="third_row_table3">
+                            <td class="Второе слагаемое">Промежуточный</td>
+                            <td id="positive_b_additional"></td>
+                            <td id="positive_b_additional"></td>
+                            <td id="negative_b_reversed"></td>
+                            <td id="negative_b_reversed"></td>
+                        </tr>
+                        <tr id="third_row_table3">
+                            <td class="namevar">Промежуточный</td>
+                            <td>{{ form.temp_11 }}</td>
+                            <td>{{ form.temp_12 }}</td>
+                            <td>{{ form.temp_13 }}</td>
+                            <td>{{ form.temp_14 }}</td>
+                        </tr>
+                        <tr id="thirs_row_table3">
+                            <td class="namevar">Коррекция</td>
+                            <td>{{ form.correction_11 }}</td>
+                            <td>{{ form.correction_12 }}</td>
+                            <td>{{ form.correction_13 }}</td>
+                            <td>{{ form.correction_14 }}</td>
+                        </tr>
+                        <tr id="thith_row_table3">
+                            <td class="namevar">Результат</td>
+                            <td>{{ form.result_11 }}</td>
+                            <td>{{ form.result_12 }}</td>
+                            <td>{{ form.result_13 }}</td>
+                            <td>{{ form.result_14 }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                        {% comment %} <button type="submit" id="save-button_3">сохранить</button> {% endcomment %}
+                </div>
+            </div>
+                <div class="sendbtn">
+                    <button type="submit" id="send-button">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function updateResults() {
+            const straightValues = [
+                document.querySelector('#positive_a_additional_1').value,
+                document.querySelector('#negative_a_additional_1').value,
+                document.querySelector('#positive_a_reversed_1').value,
+                document.querySelector('#negative_a_reversed_1').value,
+
+                document.querySelector('#positive_b_additional_1').value,
+                document.querySelector('#negative_b_additional_1').value,
+                document.querySelector('#positive_b_reversed_1').value,
+                document.querySelector('#negative_b_reversed_1').value,
+            ];
+
+            document.querySelector('#positive_a_additional').textContent = straightValues[0]; // A_add
+            document.querySelector('#negative_a_additional').textContent = straightValues[1]; // -A_add
+            document.querySelector('#positive_a_reversed').textContent = straightValues[2]; // A_rev
+            document.querySelector('#negative_a_reversed').textContent = straightValues[3]; // -A_rev
+
+            document.querySelector('#positive_b_additional').textContent = straightValues[4]; // B_add
+            document.querySelector('#negative_b_additional').textContent = straightValues[5]; // -B_add
+            document.querySelector('#positive_b_reversed').textContent = straightValues[6]; // B_rev
+            document.querySelector('#negative_b_reversed').textContent = straightValues[7]; // -B_rev
+        }
+
+        const straightFields = [
+            document.querySelector('#positive_a_additional_1'),
+            document.querySelector('#negative_a_additional_1'),
+            document.querySelector('#positive_a_reversed_1'),
+            document.querySelector('#negative_a_reversed_1'),
+            document.querySelector('#positive_b_additional_1'),
+            document.querySelector('#negative_b_additional_1'),
+            document.querySelector('#positive_b_reversed_1'),
+            document.querySelector('#negative_b_reversed_1'),
+        ];
+
+        straightFields.forEach(field => {
+            field.addEventListener('input', updateResults);
+        });
+    });
+</script>
+{% endblock %}

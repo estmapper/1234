@@ -1,0 +1,182 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block extra_css %}{% endblock %}
+
+{% block content %}
+<div class="container mt-6">
+  <div id="timer" class="alert alert-info text-center">
+    Осталось времени: <span id="time">{{ kr_duration }}</span>
+  </div>
+  <div class="test1block">
+    <form method="post" id="end_solution">
+      {% csrf_token %}
+      <div class="taskblock" id="first_solution">
+        <div class="task">
+          <h1 class="tasknumber">Задание 1</h1>
+          <p class="text_of_task">
+            Выполните перевод числа {{ number }} из десятичной системы счисления в двоичную,
+            восьмеричную и шестнадцатеричную систему счисления с заданной точностью.
+            (Девять разрядов после запятой для двоичной системы, три разряда — для восьмеричной, и два — для
+            шестнадцатеричной.) Исходное число содержит три разряда в целой части и три разряда в дробной части.
+          </p>
+        </div>
+        <div class="solution">
+          <table class="solutiontable">
+            <thead>
+              <tr id="name_row_table1">
+                <th>Система счисления</th>
+                <th>Целая часть</th>
+                <th>Дробная часть</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="first_row_table1">
+                <td class="namevar">Десятичкая</td>
+                <td>{{ number_main }}</td>
+                <td>{{ number_add }}</td>
+              </tr>
+              <tr id="second_row_table1">
+                <td class="namevar">Двоичная</td>
+                <td>{{ form.int_bin }}</td>
+                <td>{{ form.float_bin }}</td>
+              </tr>
+              <tr id="third_row_table1">
+                <td class="namevar">Восьмеричная</td>
+                <td>{{ form.int_oct }}</td>
+                <td>{{ form.float_oct }}</td>
+              </tr>
+              <tr id="fourth_row_table1">
+                <td class="namevar">Шестнадцатеричная</td>
+                <td>{{ form.int_hex }}</td>
+                <td>{{ form.float_hex }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="taskblock" id="second_solution">
+        <div class="task">
+          <h1 class="tasknumber">Задание 2</h1>
+          <p class="text_of_task">
+            Переведите {{ number_sec }}<sub>10</sub>, {{ number_trd_bin }}<sub>10</sub>, {{ number_fth_p }}<sub>p</sub>
+            в другие системы счисления по схеме,
+            изображенной на рисунке, где p = {{ p_system }} — основание системы счисления.
+          </p>
+          <img
+            href="https://mf.bmstu.ru/assets/info/faculty/kf/caf/k3/subjects/automata_theory/tests/kr1/img/01.png"></img>
+        </div>
+        <div class="solution">
+          <table class="solutiontable">
+            <thead>
+              <tr id="name_row_table2">
+                <th></th>
+                <th>Из десятичной</th>
+                <th>Из двоичной</th>
+                <th>Из {{ p_system }}-ной</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="first_row_table2">
+                <td class="namevar">В десятичную</td>
+                <td>{{ number_sec }}</td>
+                <td>{{ form.int_trd }}</td>
+                <td>{{ form.int_fth }}</td>
+              </tr>
+              <tr id="second_row_table2">
+                <td class="namevar">В двоичную</sup></td>
+                <td>{{ form.int_sec_bin }}</td>
+                <td>{{ number_trd_bin }}</td>
+                <td>{{ form.int_fth_bin }}</td>
+              </tr>
+              <tr id="third_row_table2">
+                <td class="namevar">В {{ p_system }}-ную</td>
+                <td>{{ form.int_sec_p }}</td>
+                <td>{{ form.int_trd_p }}</td>
+                <td>{{ number_fth_p }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="sendbtn">
+        <button type="submit" id="send-button">Отправить</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  // Получаем длительность из модели KRTime
+  const duration = "{{ kr_duration }}"; // Будет передано из view
+  const [hours, minutes, seconds] = duration.split(":").map(Number);
+  let totalSeconds = hours * 3600 + minutes * 60 + seconds;
+
+  function updateTimer() {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    document.getElementById("time").textContent = `${String(hours).padStart(
+      2,
+      "0"
+    )}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+
+    if (totalSeconds <= 0) {
+      clearInterval(timerInterval);
+      submitFormWithDashes();
+      return;
+    }
+
+    totalSeconds--;
+  }
+
+  function submitFormWithDashes() {
+    // Заполняем все текстовые поля тире и отправляем форму
+    const form = document.getElementById("end_solution");
+    if (!form) return;
+    const inputs = form.querySelectorAll('input[type="text"]');
+    inputs.forEach((input) => {
+      if (!input.value || String(input.value).trim() === "") {
+        input.value = " ";
+      }
+    });
+
+    // Создаем и нажимаем кнопку отправки
+    const submitButton = document.createElement("button");
+    submitButton.type = "submit";
+    submitButton.name = "send-button";
+    submitButton.value = "1";
+    submitButton.style.display = "none";
+    form.appendChild(submitButton);
+    submitButton.click();
+  }
+
+  // Обновляем таймер каждую секунду
+  const timerInterval = setInterval(updateTimer, 1000);
+  updateTimer(); // Запускаем сразу
+
+  function formatNumberInput(input) {
+    // Оставляем только цифры и A-F (в любом регистре)
+    let value = input.value.replace(/[^0-9a-fA-F]/g, "");
+
+    // Переводим в верхний регистр
+    value = value.toUpperCase();
+
+    // Ограничиваем до 10 символов (можешь убрать или поменять)
+    value = value.slice(0, 10);
+
+    input.value = value;
+  }
+
+  // Добавляем обработчики событий для всех полей ввода
+  document.addEventListener("DOMContentLoaded", function () {
+    const inputs = document.querySelectorAll('input[type="text"]');
+    inputs.forEach((input) => {
+      input.classList.add("number-input");
+      input.addEventListener("input", function () {
+        formatNumberInput(this);
+      });
+    });
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,201 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block extra_css %}{% endblock %}
+
+{% block content %}
+    <div class="container mt-6">
+        <div class="test1block">
+            <form method="post" id="end_solution">
+                {% csrf_token %}
+            <div class="taskblock" id="first_solution">
+                <div class="task">
+                    <h1 class="tasknumber">
+                        Задание 1
+                    </h1>
+                    <p class="text_of_task">
+                        Выполните перевод числа {{ A }} из десятичной системы счисления в двоичную, восьмеричную и шестнадцатеричную систему счисления с заданной точностью (девять разрядов после запятой для двоичной системы, три разряда — для восьмеричной, и два — для шестнадцатеричной).
+                    </p>
+                </div>
+                    <div class="solution">
+                        <table class="solutiontable">
+                            <thead>
+                            <tr id="name_row_table1">
+                                <th>Десятичная</th>
+                                <th>{{ A }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr id="first_row_table1">
+                                <td class="namevar">Двоичная</td>
+                            <td>{{ form.binary }}</td>
+                            </tr>
+                            <tr id="second_row_table1">
+                                <td class="namevar">Восьмеричная</td>
+                            <td>{{ form.octal }}</td>
+                            </tr>
+                            <tr id="third_row_table1">
+                                <td class="namevar">Шестнадцатеричная</td>
+                            <td>{{ form.hexadecimal }}</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        {% comment %} <button type="submit" id="save-button">сохранить</button> {% endcomment %}
+                    </div>
+            </div>
+            <div class="taskblock" id="second_solution">
+                
+                <div class="task">
+                    <h1 class="tasknumber">
+                        Задание 2    
+                    </h1>
+                    <p class="text_of_task">
+                        Целую часть числа переведите в другие системы счисления по схеме, изображенной на рисунке, где p — основание системы счисления. P = {{ P }}.
+                        <img src="{% static 'images/p.png' %}"> 
+                    </p>
+                </div>
+                    <div class="solution">
+                        <table class="divisiontable">
+                            <tbody>
+                            <tr id="first_row_table2">
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_11 }}</td>
+                                <td style="text-align:center; width:30px; border-bottom:2px solid #000000;">{{ form.division_12 }}</td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                            </tr>
+                            <tr id="second_row_table2">
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_21 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_22 }}</td>
+                                <td style="text-align:center; width:30px; border-bottom:2px solid #000000;">{{ form.division_23 }}</td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                            </tr>
+                            <tr id="third_row_table2">
+                                <td style="text-align:center; width:30px;border-top:2px solid #000000;">{{ form.division_31 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_32 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_33 }}</td>
+                                <td style="text-align:center; width:30px; border-bottom:2px solid #000000;">{{ form.division_34 }}</td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                            </tr>
+                            <tr id="thourd_row_table2">
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;border-top:2px solid #000000;">{{ form.division_41 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_42 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_43 }}</td>
+                                <td style="text-align:center; width:30px; border-bottom:2px solid #000000;">{{ form.division_44 }}</td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                            </tr>
+                            <tr id="fifth_row_table2">
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;border-top:2px solid #000000;">{{ form.division_51 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_52 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_53 }}</td>
+                                <td style="text-align:center; width:30px; border-bottom:2px solid #000000;">{{ form.division_54 }}</td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                            </tr>
+                            <tr id="sixth_row_table2">
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;border-top:2px solid #000000;">{{ form.division_61 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_62 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_63 }}</td>
+                                <td style="text-align:center; width:30px; border-bottom:2px solid #000000;">{{ form.division_64 }}</td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                            </tr>
+                            <tr id="sixth_row_table2">
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;border-top:2px solid #000000;">{{ form.division_71 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_72 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_73 }}</td>
+                                <td style="text-align:center; width:30px; border-bottom:2px solid #000000;">{{ form.division_74 }}</td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                            </tr>
+                            <tr id="sixth_row_table2">
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;border-top:2px solid #000000;">{{ form.division_81 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_82 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_83 }}</td>
+                                <td style="text-align:center; width:30px; border-bottom:2px solid #000000;">{{ form.division_84 }}</td>
+                                <td style="text-align:center; width:30px;"></td>
+                            </tr>
+                            <tr id="sixth_row_table2">
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;border-top:2px solid #000000;">{{ form.division_91 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_92 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_93 }}</td>
+                                <td style="text-align:center; width:30px; border-bottom:2px solid #000000;">{{ form.division_94 }}</td>
+                            <tr id="sixth_row_table2">
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;border-top:2px solid #000000;">{{ form.division_101 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_102 }}</td>
+                                <td style="text-align:center; width:30px;border-right:2px solid #000000;">{{ form.division_103 }}</td>
+                            </tr>
+                            <tr id="sixth_row_table2">
+                                <td style="text-align:center; width:30px;border:2px solid #000000;">{{ form.divisionanswer }}</td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;"></td>
+                                <td style="text-align:center; width:30px;border-top:2px solid #000000;">{{ form.division_111 }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    {% comment %} <button type="submit" id="save-button_2">сохранить</button> {% endcomment %}
+                </div>
+            </div>
+                <div class="sendbtn">
+                    <button type="submit" id="send-button">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

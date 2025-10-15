@@ -1,0 +1,18 @@
+{% extends  'base/base.html' %}
+{% load static %}
+
+{% block extra_css %}{% endblock %}
+
+{% block content %}
+<div class="container mt-6">
+  <div class="card">
+    <div class="task">
+      <p class="numberdetails">
+        <span class="number">Контрольная работа №2</span>
+        <p class="details">Работа длится 90 минут. <br/>Перед началом контрольной работы убедитесь в стабильном интернет соединении. По техническим вопросам пишите tg: @lavosami</p>
+      </p>
+      <a href="{% url 'border_control2' %}" class="btn">Начать</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

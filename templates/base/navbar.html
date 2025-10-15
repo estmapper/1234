@@ -1,0 +1,33 @@
+{% load static %}
+<header class="header noprint">
+  <div class="header-main">
+    <a class="header_bmstu-logo" href="https://mf.bmstu.ru/">
+      <!-- <img
+        src="https://mf.bmstu.ru/assets/images/template/bmstu-logo.svg"
+        alt="Мытищинский филиал МГТУ им. Н. Э. Баумана"
+      /> -->
+      <div class="header_bmstu-name">
+        <span class="header_bmstu-name_dekstop">
+          <p>Электронная система контрольных</p>
+          <span class="nobr">Теория автоматов</span>
+        </span>
+      </div>
+    </a>
+    <div class="header_menu">
+      <div class="header_menu-item">
+        <a href="{% url 'account' %}">Личный кабинет</a>
+      </div>
+      <div class="header_menu-item">
+        <a href="{% url 'border_control' %}">Контрольные работы</a>
+      </div>
+      {% comment %}
+      <div class="header_menu-item">
+        <a href="{% url 'practice' %}">Тренировка</a>
+      </div>
+      {% endcomment %}
+      <a class="header_quit-img" href="{% url 'logout' %}">
+        <img src="{% static 'images/quit.png' %}" alt="Переход на сайт МФ" />
+      </a>
+    </div>
+  </div>
+</header>

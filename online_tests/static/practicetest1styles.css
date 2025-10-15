@@ -1,0 +1,274 @@
+* {
+    box-sizing: border-box;
+    font-family: "ALS Sector", sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: "ALS Sector", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #24292e;
+    background-color: #fff;
+    display: block;
+}
+
+header {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+
+p img {
+    display: flex;
+    align-items: center;
+}
+
+
+.header {
+    background: linear-gradient(90deg, #004EA0 15%, #008D6A 75%);
+    color: #fff;
+}
+
+.header-main {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    max-width: 1290px;
+    margin: 0 auto;
+    padding: 0 30px;
+    min-width: 320px;
+}
+
+.header a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.header_bmstu-logo {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+a {
+    transition: .2s;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+a:-webkit-any-link {
+    cursor: pointer;
+}
+
+.header_bmstu-logo img {
+    width: 53px;
+    height: 62px;
+    margin-right: 15px;
+}
+
+img {
+    border-style: none;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.header_bmstu-name {
+    margin: 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 1.2;
+    letter-spacing: .04em;
+}
+
+.header_bmstu-name_desktop {
+    display: block;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+
+.header_bmstu-name p {
+    margin: 0;
+    margin-top: 10px;
+    font-size: 16px;
+    letter-spacing: 0;
+}
+
+.header_bmstu-name span {
+    font-size: 20px;
+}
+
+.nobr {
+    white-space: nowrap;
+}
+
+
+.header_menu {
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    position: static;
+    width: auto;
+    min-height: unset;
+    padding-top: 0;
+    margin-right: -20px;
+    background: none;
+}
+
+.header .header_menu-item:first-of-type {
+    margin-top: 0;
+}
+
+.header .header_menu-item {
+    padding: 40px 0;
+}
+
+.header .header_menu-item a {
+    font-size: 18px;
+    display: block;
+    padding: 16px 20px;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+.header .header_quit-img {
+    padding: 30px 0;
+    margin-bottom: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.header .header_quit-img img {
+    width: 30px;
+}
+
+.main-page {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    margin: 0 75px;
+}
+
+.test1block {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: block;
+}
+
+.taskblock {
+    display: flex;
+}
+
+.task {
+    border: 1px solid rgba(100, 100, 100, 0.2);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    width: 350px;
+}
+
+.tasknumber {
+    margin: 10px;
+    font-size: 24px;
+}
+
+.text_of_task {
+    margin: 10px;
+    font-size: 16px;
+}
+
+.solution {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    width: 850px;
+    margin-bottom: 30px;
+}
+
+.solutiontable {
+    margin: 10px;
+    border-collapse: collapse;
+    width: 1000px;
+    border: 1px solid black;
+}
+
+.divisiontable {
+    margin: 10px;
+    border-collapse: collapse;
+    width: 1000px;
+}
+
+.solutiontable th,
+.namevar {
+    border: 1px solid black;
+    text-align: center;
+    font-size: 18px;
+}
+
+td input {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.solution button {
+    width: 140px;
+    background: rgb(78, 78, 78);
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    padding: 10px 10px;
+}
+
+.sendbtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sendbtn button {
+    width: 180px;
+    height: 40px;
+    background: rgb(78, 78, 78);
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+    padding: 10px 10px;
+}

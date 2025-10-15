@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    background: radial-gradient(circle, #004EA0, #008D6A);
+}
+
+header {
+    unicode-bidi: isolate;
+    display: flex;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.quit-img {
+    width: 30px;
+    height: 30px;
+    border-style: none;
+    overflow: clip;
+    margin-top: 3%;
+    margin-left: 95%;
+    opacity: .5;
+}
+
+.bmstu-logo {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: .1;
+    width: 600px;
+    border-style: none;
+    overflow: clip;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.pages a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.pages-scpage,
+.pages-testpage,
+.pages-adminpage {
+    width: 300px;
+    height: 200px;
+    background: linear-gradient(135deg, #004EA0 0%, #008D6A 100%);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pages-scpage:hover,
+.pages-testpage:hover,
+.pages-adminpage:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.pages-adminpage {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+}

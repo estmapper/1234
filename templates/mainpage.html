@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block extra_css %}{% endblock %}
+
+{% block content %}
+<div class="container mt-6">
+  <div class="tiles">
+    {% if not user.is_superuser %}
+      <a href="{% url 'account' %}" class="tile">
+        <span>Личный кабинет</span>
+      </a>
+    {% endif %}
+
+    <a href="{% url 'border_control' %}" class="tile">
+      <span>Контрольные работы</span>
+    </a>
+
+    {% if user.is_superuser %}
+      <a href="{% url 'admin-panel' %}" class="tile">
+        <span>Админ панель</span>
+      </a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

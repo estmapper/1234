@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: radial-gradient(circle, #004EA0, #008D6A);
+}
+
+.auth-window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -300px 0 0 -250px;
+    height: 600px;
+    width: 500px;
+    border-radius: 10%;
+    background: transparent;
+    border: 3px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 100px rgba(0, 0, 0, .2);
+}
+
+.bmstu-logo {
+    position: relative;
+    width: 120px;
+    opacity: .7;
+    padding-top: 30px;
+    padding-left: 190px;
+}
+
+.auth-window h1 {
+    margin: 0;
+    padding-top: 30px;
+    text-align: center;
+    font-size: 36px;
+    color: white;
+    font-family: 'Comic Sans';
+}
+
+.auth-window .input-box {
+    width: 100%;
+    height: 20px;
+    margin: 52px 0;
+}
+
+.auth-window .input-box:first-of-type {
+    margin-top: 20px;
+}
+
+.input-box input {
+    margin: 0;
+    padding: 0;
+    width: 400px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: white;
+    padding: 20px 20px 20px 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.input-box input::placeholder {
+    color: white;
+}
+
+.auth-window .btn {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 30px;
+    width: 400px;
+    height: 45px;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.ghost-mode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    opacity: .7;
+}
+
+.ghost-mode span {
+    height: 20px;
+    font-size: 18px;
+    color: white;
+}
+
+.ghostimg {
+    position: relative;
+    width: 20px;
+    top: 3px;
+    left: 3px;
+}
+
+.arrowimg {
+    position: relative;
+    width: 20px;
+    top: 4px;
+    left: 3px;
+    padding-right: 2px;
+}

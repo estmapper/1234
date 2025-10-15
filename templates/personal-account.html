@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block extra_css %}{% endblock %}
+
+{% block content %}
+<div class="container mt-6">
+  <h1>Личный кабинет</h1>
+  <div class="grid gap-4 mt-4">
+    <div class="userrating card">
+      <h2>{{ user.last_name }} {{ user.first_name }}</h2>
+      <h3>Группа: {{ user.group.name }}</h3>
+      <h4>ID: {{ user.id }}</h4>
+    </div>
+    <div class="userrating card">
+      <h2>Оценки</h2>
+      <div class="lastresults mt-3">
+        <div class="miniresult card">
+          <h3>Контрольная №1</h3>
+          <h4>
+            {% if kr_first != "no data" %}
+              <a href="{% url 'kr_detail' 1 %}">{{ kr_first }}/10 баллов</a>
+            {% else %}
+              {{ kr_first }}/10 баллов
+            {% endif %}
+          </h4>
+        </div>
+        <div class="miniresult card">
+          <h3>Контрольная №2</h3>
+          <h4>
+            {% if kr_second != "no data" %}
+              <a href="{% url 'kr_detail' 2 %}">{{ kr_second }}/10 баллов</a>
+            {% else %}
+              {{ kr_second }}/10 баллов
+            {% endif %}
+          </h4>
+        </div>
+        <div class="miniresult card">
+          <h3>Контрольная №3</h3>
+          <h4>
+            {% if kr_third != "no data" %}
+              <a href="{% url 'kr_detail' 3 %}">{{ kr_third }}/10 баллов</a>
+            {% else %}
+              {{ kr_third }}/10 баллов
+            {% endif %}
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "admin/base_site.html" %}
+{% load custom_filters %}
+
+{% block content %}
+<style>
+  .solutiontable { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  .solutiontable th, .solutiontable td { border: 1px solid #ddd; padding: 6px 8px; text-align: center; }
+  .solutiontable thead th { background: #f5f5f5; }
+  .namevar { font-weight: 600; text-align: left; }
+  .character-comparison { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size: 0.95rem; letter-spacing: 0.03em; }
+  .correct-char { color: #28a745; font-weight: 600; }
+  .incorrect-char { color: #dc3545; font-weight: 600; }
+</style>
+
+<div class="results">
+  <h1>Результаты РК №1</h1>
+  <p><strong>Пользователь:</strong> {{ object.user }}</p>
+  <p><strong>Число A:</strong> {{ object.number }}</p>
+  <p><strong>Число B:</strong> {{ object.number_sec }}</p>
+  <p><strong>Число C:</strong> {{ object.answers.int_trd }}</p>
+  <p><strong>Число D:</strong> {{ object.answers.int_fth }}</p>
+  <p><strong>Степень p:</strong> {{ object.p_system }}</p>
+  <p><strong>Оценка:</strong> {{ object.result_number }}</p>
+  <p><strong>Баллы:</strong> {{ object.rating }}</p>
+
+  <h2>Задание 1</h2>
+  <table class="solutiontable">
+    <thead>
+      <tr>
+        <th>Система счисления</th>
+        <th>Целая часть</th>
+        <th>Дробная часть</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="namevar">Десятичная</td>
+        <td>{{ object.number|floatformat:0 }}</td>
+        <td>{{ object.number|floatformat:3|slice:"-3:" }}</td>
+      </tr>
+      <tr>
+        <td class="namevar">Двоичная</td>
+        <td class="character-comparison">{{ object.results.int_bin|compare_chars:object.answers.int_bin|safe }}</td>
+        <td class="character-comparison">{{ object.results.float_bin|compare_chars:object.answers.float_bin|safe }}</td>
+      </tr>
+      <tr>
+        <td class="namevar">Восьмеричная</td>
+        <td class="character-comparison">{{ object.results.int_oct|compare_chars:object.answers.int_oct|safe }}</td>
+        <td class="character-comparison">{{ object.results.float_oct|compare_chars:object.answers.float_oct|safe }}</td>
+      </tr>
+      <tr>
+        <td class="namevar">Шестнадцатеричная</td>
+        <td class="character-comparison">{{ object.results.int_hex|compare_chars:object.answers.int_hex|safe }}</td>
+        <td class="character-comparison">{{ object.results.float_hex|compare_chars:object.answers.float_hex|safe }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Задание 2</h2>
+  <table class="solutiontable">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Из десятичной</th>
+        <th>Из двоичной</th>
+        <th>Из {{ object.p_system }}-ной</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="namevar">В десятичную</td>
+        <td>{{ object.number_sec }}</td>
+        <td class="character-comparison">{{ object.results.int_trd|compare_chars:object.answers.int_trd|safe }}</td>
+        <td class="character-comparison">{{ object.results.int_fth|compare_chars:object.answers.int_fth|safe }}</td>
+      </tr>
+      <tr>
+        <td class="namevar">В двоичную</td>
+        <td class="character-comparison">{{ object.results.int_sec_bin|compare_chars:object.answers.int_sec_bin|safe }}</td>
+        <td>{{ object.answers.int_trd }}</td>
+        <td class="character-comparison">{{ object.results.int_fth_bin|compare_chars:object.answers.int_fth_bin|safe }}</td>
+      </tr>
+      <tr>
+        <td class="namevar">В {{ object.p_system }}-ную</td>
+        <td class="character-comparison">{{ object.results.int_sec_p|compare_chars:object.answers.int_sec_p|safe }}</td>
+        <td class="character-comparison">{{ object.results.int_trd_p|compare_chars:object.answers.int_trd_p|safe }}</td>
+        <td>{{ object.answers.int_fth }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,617 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-6">
+  <div id="timer" class="alert alert-info text-center">
+    Осталось времени: <span id="time">{{ kr_duration }}</span>
+  </div>
+  <div class="test2block">
+    <form method="post" id="end_solution">
+      {% csrf_token %}
+      <div class="taskblock" id="first_solution">
+        <div class="task">
+          <h1 class="tasknumber">Задание 1</h1>
+          <p class="text_of_task">
+            Представьте в восьмиразрядной сетке числа A ({{ number_1 }}),
+            B ({{ number_2 }}), −A, −B, используя прямой, обратный и дополнительный
+            коды. Результаты представьте в таблице, левый столбец которой
+            соответствует заданному числу, а оставшиеся три — его представлению
+            в прямом, обратном и дополнительном кодах.
+          </p>
+        </div>
+        <div class="solution">
+          <table class="solutiontable">
+            <thead>
+              <tr id="name_row_table1">
+                <th>Переменная</th>
+                <th>Прямой</th>
+                <th>Обратный</th>
+                <th>Дополнительный</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="first_row_table1">
+                <td class="namevar">A</td>
+                <td dir="rtl">{{ form.straight_1 }}</td>
+                <td dir="rtl">{{ form.reversed_1 }}</td>
+                <td dir="rtl">{{ form.additional_1 }}</td>
+              </tr>
+              <tr id="second_row_table1">
+                <td class="namevar">-A</td>
+                <td dir="rtl">{{ form.straight_2 }}</td>
+                <td dir="rtl">{{ form.reversed_2 }}</td>
+                <td dir="rtl">{{ form.additional_2 }}</td>
+              </tr>
+              <tr id="third_row_table1">
+                <td class="namevar">B</td>
+                <td dir="rtl">{{ form.straight_3 }}</td>
+                <td dir="rtl">{{ form.reversed_3 }}</td>
+                <td dir="rtl">{{ form.additional_3 }}</td>
+              </tr>
+              <tr id="fourth_row_table1">
+                <td class="namevar">-B</td>
+                <td dir="rtl">{{ form.straight_4 }}</td>
+                <td dir="rtl">{{ form.reversed_4 }}</td>
+                <td dir="rtl">{{ form.additional_4 }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="taskblock" id="second_solution">
+        <div class="task">
+          <h1 class="tasknumber">Задание 2</h1>
+          <p class="text_of_task">
+            Умножьте числа A и B на 2 в степени {{ degree_1 }}, {{ degree_2 }},
+            {{ degree_3 }}. Результат представьте в таблице справа. Переполнение обозначить символом "-".
+          </p>
+        </div>
+        <div class="solution">
+          <table class="solutiontable">
+            <thead>
+              <tr id="name_row_table2">
+                <th>Переменная</th>
+                <th>Прямой</th>
+                <th>Обратный</th>
+                <th>Дополнительный</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="first_row_table2">
+                <td class="namevar">A * 2 <sup>{{ degree_1 }}</sup></td>
+                <td dir="rtl">{{ form.straight_5 }}</td>
+                <td dir="rtl">{{ form.reversed_5 }}</td>
+                <td dir="rtl">{{ form.additional_5 }}</td>
+              </tr>
+              <tr id="second_row_table2">
+                <td class="namevar">A * 2 <sup>{{ degree_2 }}</sup></td>
+                <td dir="rtl">{{ form.straight_6 }}</td>
+                <td dir="rtl">{{ form.reversed_6 }}</td>
+                <td dir="rtl">{{ form.additional_6 }}</td>
+              </tr>
+              <tr id="third_row_table2">
+                <td class="namevar">A * 2 <sup>{{ degree_3 }}</sup></td>
+                <td dir="rtl">{{ form.straight_7 }}</td>
+                <td dir="rtl">{{ form.reversed_7 }}</td>
+                <td dir="rtl">{{ form.additional_7 }}</td>
+              </tr>
+              <tr id="thourd_row_table2">
+                <td class="namevar">B * 2 <sup>{{ degree_1 }}</sup></td>
+                <td dir="rtl">{{ form.straight_8 }}</td>
+                <td dir="rtl">{{ form.reversed_8 }}</td>
+                <td dir="rtl">{{ form.additional_8 }}</td>
+              </tr>
+              <tr id="fifth_row_table2">
+                <td class="namevar">B * 2 <sup>{{ degree_2 }}</sup></td>
+                <td dir="rtl">{{ form.straight_9 }}</td>
+                <td dir="rtl">{{ form.reversed_9 }}</td>
+                <td dir="rtl">{{ form.additional_9 }}</td>
+              </tr>
+              <tr id="sixth_row_table2">
+                <td class="namevar">B * 2 <sup>{{ degree_3 }}</sup></td>
+                <td dir="rtl">{{ form.straight_10 }}</td>
+                <td dir="rtl">{{ form.reversed_10 }}</td>
+                <td dir="rtl">{{ form.additional_10 }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="taskblock" id="third_solution">
+        {% csrf_token %}
+        <div class="task">
+          <h1 class="tasknumber">Задание 3</h1>
+          <p class="text_of_task">
+            Выполните примеры любым способом.<br />Результат представьте в таблице справа.
+          </p>
+        </div>
+        <div class="solution">
+          <div class="tables-container">
+            <!-- Первая часть первой таблицы -->
+            <table class="solutiontable">
+              <thead>
+                <tr id="name_row_table3">
+                  <th>Пример</th>
+                  <th>[A]<sub>д</sub>+[B]<sub>д</sub></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr id="third_row_table3">
+                  <td class="namevar">[A]<sub>д</sub></td>
+                  <td><input type="text" id="additional_1_value_1" name="additional_1_value_1"
+                      value="{{ form.additional_1.value }}" readonly></td>
+                </tr>
+                <script>
+                  // Реальное копирование значений при изменении исходных полей
+                  document.addEventListener("DOMContentLoaded", function () {
+                    function syncValue(srcId, destIds) {
+                      const src = document.getElementById(srcId);
+                      destIds.forEach(function (destId) {
+                        const dest = document.getElementById(destId);
+                        if (src && dest) {
+                          dest.value = src.value;
+                          src.addEventListener("input", function () {
+                            dest.value = src.value;
+                          });
+                        }
+                      });
+                    }
+                    syncValue("id_additional_1", ["additional_1_value_1", "additional_1_value_2"]);
+                    syncValue("id_additional_2", ["additional_2_value_1", "additional_2_value_2"]);
+                  });
+                </script>
+                <tr id="third_row_table3">
+                  <td class="namevar">[B]<sub>д</sub></td>
+                  <td><input type="text" id="additional_3_value_1" name="additional_3_value_1"
+                      value="{{ form.additional_3.value }}" readonly></td>
+                </tr>
+                <script>
+                  // Реальное копирование значений при изменении исходных полей
+                  document.addEventListener("DOMContentLoaded", function () {
+                    function syncValue(srcId, destIds) {
+                      const src = document.getElementById(srcId);
+                      destIds.forEach(function (destId) {
+                        const dest = document.getElementById(destId);
+                        if (src && dest) {
+                          dest.value = src.value;
+                          src.addEventListener("input", function () {
+                            dest.value = src.value;
+                          });
+                        }
+                      });
+                    }
+                    syncValue("id_additional_3", ["additional_3_value_1", "additional_3_value_2"]);
+                    syncValue("id_additional_4", ["additional_4_value_1", "additional_4_value_2"]);
+                  });
+                </script>
+                <tr id="third_row_table3">
+                  <td class="namevar">[Промежуточный]<sub>д</sub></td>
+                  <td dir="rtl">{{ form.temp_11 }}</td>
+                </tr>
+                <tr id="thirs_row_table3">
+                  <td class="namevar">Коррекция</td>
+                  <td dir="rtl">{{ form.correction_11 }}</td>
+                </tr>
+                <tr id="thith_row_table3">
+                  <td class="namevar">[Результат]<sub>д</sub></td>
+                  <td dir="rtl">{{ form.result_11 }}</td>
+                </tr>
+                <tr id="thith_row_table3">
+                  <td class="namevar">[Результат]<sub>п</sub></td>
+                  <td dir="rtl">{{ form.realizing_11 }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Вторая часть первой таблицы -->
+            <table class="solutiontable">
+              <thead>
+                <tr id="name_row_table3">
+                  <th>Пример</th>
+                  <th>[−A]<sub>д</sub>+[B]<sub>д</sub></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr id="third_row_table3">
+                  <td class="namevar">[-A]<sub>д</sub></td>
+                  <td><input type="text" id="additional_2_value_1" name="additional_2_value_1"
+                      value="{{ form.additional_2.value }}" readonly></td>
+                </tr>
+                <tr id="third_row_table3">
+                  <td class="namevar">[B]<sub>д</sub></td>
+                  <td><input type="text" id="additional_3_value_2" name="additional_3_value_2"
+                      value="{{ form.additional_3.value }}" readonly></td>
+                </tr>
+                <tr id="third_row_table3">
+                  <td class="namevar">[Промежуточный]<sub>д</sub></td>
+                  <td dir="rtl">{{ form.temp_12 }}</td>
+                </tr>
+                <tr id="thirs_row_table3">
+                  <td class="namevar">Коррекция</td>
+                  <td dir="rtl">{{ form.correction_12 }}</td>
+                </tr>
+                <tr id="thith_row_table3">
+                  <td class="namevar">[Результат]<sub>д</sub></td>
+                  <td dir="rtl">{{ form.result_12 }}</td>
+                </tr>
+                <tr id="thith_row_table3">
+                  <td class="namevar">[Результат]<sub>п</sub></td>
+                  <td dir="rtl">{{ form.realizing_12 }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Третья часть первой таблицы -->
+            <table class="solutiontable">
+              <thead>
+                <tr id="name_row_table3">
+                  <th>Пример</th>
+                  <th>[A]<sub>д</sub>+[−B]<sub>д</sub></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr id="third_row_table3">
+                  <td class="namevar">[A]<sub>д</sub></td>
+                  <td><input type="text" id="additional_1_value_2" name="additional_1_value_2"
+                      value="{{ form.additional_1.value }}" readonly></td>
+                </tr>
+                <tr id="third_row_table3">
+                  <td class="namevar">[-B]<sub>д</sub></td>
+                  <td><input type="text" id="additional_4_value_1" name="additional_4_value_1"
+                      value="{{ form.additional_4.value }}" readonly></td>
+                </tr>
+                <tr id="third_row_table3">
+                  <td class="namevar">[Промежуточный]<sub>д</sub></td>
+                  <td dir="rtl">{{ form.temp_13 }}</td>
+                </tr>
+                <tr id="thirs_row_table3">
+                  <td class="namevar">Коррекция</td>
+                  <td dir="rtl">{{ form.correction_13 }}</td>
+                </tr>
+                <tr id="thith_row_table3">
+                  <td class="namevar">[Результат]<sub>д</sub></td>
+                  <td dir="rtl">{{ form.result_13 }}</td>
+                </tr>
+                <tr id="thith_row_table3">
+                  <td class="namevar">[Результат]<sub>п</sub></td>
+                  <td dir="rtl">{{ form.realizing_13 }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Четвертая часть первой таблицы -->
+            <table class="solutiontable">
+              <thead>
+                <tr id="name_row_table3">
+                  <th>Пример</th>
+                  <th>[−A]<sub>д</sub>+[−B]<sub>д</sub></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr id="third_row_table3">
+                  <td class="namevar">[-A]<sub>д</sub></td>
+                  <td><input type="text" id="additional_2_value_2" name="additional_2_value_2"
+                      value="{{ form.additional_2.value }}" readonly></td>
+                </tr>
+                <tr id="third_row_table3">
+                  <td class="namevar">[-B]<sub>д</sub></td>
+                  <td><input type="text" id="additional_4_value_2" name="additional_4_value_2"
+                      value="{{ form.additional_4.value }}" readonly></td>
+                </tr>
+                <tr id="third_row_table3">
+                  <td class="namevar">[Промежуточный]<sub>д</sub></td>
+                  <td dir="rtl">{{ form.temp_14 }}</td>
+                </tr>
+                <tr id="thirs_row_table3">
+                  <td class="namevar">Коррекция</td>
+                  <td dir="rtl"><bdo dir="rtl">{{ form.correction_14 }}</bdo></td>
+                </tr>
+                <tr id="thith_row_table3">
+                  <td class="namevar">[Результат]<sub>д</sub></td>
+                  <td dir="rtl">{{ form.result_14 }}</td>
+                </tr>
+                <tr id="thith_row_table3">
+                  <td class="namevar">[Результат]<sub>п</sub></td>
+                  <td dir="rtl">{{ form.realizing_14 }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Первая часть второй таблицы -->
+            <table class="solutiontable">
+              <thead>
+                <tr id="name_row_table3">
+                  <th>Пример</th>
+                  <th>[A]<sub>о</sub>+[B]<sub>о</sub></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr id="third_row_table3">
+                  <td class="namevar">[A]<sub>о</sub></td>
+                  <td><input type="text" id="reversed_1_value_1" name="reversed_1_value_1"
+                      value="{{ form.reversed_1.value }}" readonly></td>
+                </tr>
+                <script>
+                  // Реальное копирование значений при изменении исходных полей
+                  document.addEventListener("DOMContentLoaded", function () {
+                    function syncValue(srcId, destIds) {
+                      const src = document.getElementById(srcId);
+                      destIds.forEach(function (destId) {
+                        const dest = document.getElementById(destId);
+                        if (src && dest) {
+                          dest.value = src.value;
+                          src.addEventListener("input", function () {
+                            dest.value = src.value;
+                          });
+                        }
+                      });
+                    }
+                    syncValue("id_reversed_1", ["reversed_1_value_1", "reversed_1_value_2"]);
+                    syncValue("id_reversed_2", ["reversed_2_value_1", "reversed_2_value_2"]);
+                  });
+                </script>
+                <tr id="third_row_table3">
+                  <td class="namevar">[B]<sub>о</sub></td>
+                  <td><input type="text" id="reversed_3_value_1" name="reversed_3_value_1"
+                      value="{{ form.reversed_3.value }}" readonly></td>
+                </tr>
+                <script>
+                  // Реальное копирование значений при изменении исходных полей
+                  document.addEventListener("DOMContentLoaded", function () {
+                    function syncValue(srcId, destIds) {
+                      const src = document.getElementById(srcId);
+                      destIds.forEach(function (destId) {
+                        const dest = document.getElementById(destId);
+                        if (src && dest) {
+                          dest.value = src.value;
+                          src.addEventListener("input", function () {
+                            dest.value = src.value;
+                          });
+                        }
+                      });
+                    }
+                    syncValue("id_reversed_3", ["reversed_3_value_1", "reversed_3_value_2"]);
+                    syncValue("id_reversed_4", ["reversed_4_value_1", "reversed_4_value_2"]);
+                  });
+                </script>
+                <tr id="third_row_table3">
+                  <td class="namevar">[Промежуточный]<sub>о</sub></td>
+                  <td dir="rtl">{{ form.temp_15 }}</td>
+                </tr>
+                <tr id="thirs_row_table3">
+                  <td class="namevar">Коррекция</td>
+                  <td dir="rtl">{{ form.correction_15 }}</td>
+                </tr>
+                <tr id="thith_row_table3">
+                  <td class="namevar">[Результат]<sub>о</sub></td>
+                  <td dir="rtl">{{ form.result_15 }}</td>
+                </tr>
+                <tr id="thith_row_table3">
+                  <td class="namevar">[Результат]<sub>п</sub></td>
+                  <td dir="rtl">{{ form.realizing_15 }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Вторая часть второй таблицы -->
+            <table class="solutiontable">
+              <thead>
+                <tr id="name_row_table3">
+                  <th>Пример</th>
+                  <th>[−A]<sub>о</sub>+[B]<sub>о</sub></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr id="third_row_table3">
+                  <td class="namevar">[-A]<sub>о</sub></td>
+                  <td><input type="text" id="reversed_2_value_1" name="reversed_2_value_1"
+                      value="{{ form.reversed_2.value }}" readonly></td>
+                </tr>
+                <tr id="third_row_table3">
+                  <td class="namevar">[B]<sub>о</sub></td>
+                  <td><input type="text" id="reversed_3_value_2" name="reversed_3_value_2"
+                      value="{{ form.reversed_3.value }}" readonly></td>
+                </tr>
+                <tr id="third_row_table3">
+                  <td class="namevar">[Промежуточный]<sub>о</sub></td>
+                  <td dir="rtl">{{ form.temp_16 }}</td>
+                </tr>
+                <tr id="thirs_row_table3">
+                  <td class="namevar">Коррекция</td>
+                  <td dir="rtl">{{ form.correction_16 }}</td>
+                </tr>
+                <tr id="thith_row_table3">
+                  <td class="namevar">[Результат]<sub>о</sub></td>
+                  <td dir="rtl">{{ form.result_16 }}</td>
+                </tr>
+                <tr id="thith_row_table3">
+                  <td class="namevar">[Результат]<sub>п</sub></td>
+                  <td dir="rtl">{{ form.realizing_16 }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Третья часть второй таблицы -->
+            <table class="solutiontable">
+              <thead>
+                <tr id="name_row_table3">
+                  <th>Пример</th>
+                  <th>[A]<sub>о</sub>+[−B]<sub>о</sub></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr id="third_row_table3">
+                  <td class="namevar">[A]<sub>о</sub></td>
+                  <td><input type="text" id="reversed_1_value_2" name="reversed_1_value_2"
+                      value="{{ form.reversed_1.value }}" readonly></td>
+                </tr>
+                <tr id="third_row_table3">
+                  <td class="namevar">[-B]<sub>о</sub></td>
+                  <td><input type="text" id="reversed_4_value_1" name="reversed_4_value_1"
+                      value="{{ form.reversed_4.value }}" readonly></td>
+                </tr>
+                <tr id="third_row_table3">
+                  <td class="namevar">[Промежуточный]<sub>о</sub></td>
+                  <td dir="rtl">{{ form.temp_17 }}</td>
+                </tr>
+                <tr id="thirs_row_table3">
+                  <td class="namevar">Коррекция</td>
+                  <td dir="rtl">{{ form.correction_17 }}</td>
+                </tr>
+                <tr id="thith_row_table3">
+                  <td class="namevar">[Результат]<sub>о</sub></td>
+                  <td dir="rtl">{{ form.result_17 }}</td>
+                </tr>
+                <tr id="thith_row_table3">
+                  <td class="namevar">[Результат]<sub>п</sub></td>
+                  <td dir="rtl">{{ form.realizing_17 }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Четвертая часть второй таблицы -->
+            <table class="solutiontable">
+              <thead>
+                <tr id="name_row_table3">
+                  <th>Пример</th>
+                  <th>[−A]<sub>о</sub>+[−B]<sub>о</sub></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr id="third_row_table3">
+                  <td class="namevar">[-A]<sub>о</sub></td>
+                  <td><input type="text" id="reversed_2_value_2" name="reversed_2_value_2"
+                      value="{{ form.reversed_2.value }}" readonly></td>
+                </tr>
+                <tr id="third_row_table3">
+                  <td class="namevar">[-B]<sub>о</sub></td>
+                  <td><input type="text" id="reversed_4_value_2" name="reversed_4_value_2"
+                      value="{{ form.reversed_4.value }}" readonly></td>
+                </tr>
+                <tr id="third_row_table3">
+                  <td class="namevar">[Промежуточный]<sub>о</sub></td>
+                  <td dir="rtl">{{ form.temp_18 }}</td>
+                </tr>
+                <tr id="thirs_row_table3">
+                  <td class="namevar">Коррекция</td>
+                  <td dir="rtl"><bdo dir="rtl">{{ form.correction_18 }}</bdo></td>
+                </tr>
+                <tr id="thith_row_table3">
+                  <td class="namevar">[Результат]<sub>о</sub></td>
+                  <td dir="rtl">{{ form.result_18 }}</td>
+                </tr>
+                <tr id="thith_row_table3">
+                  <td class="namevar">[Результат]<sub>п</sub></td>
+                  <td dir="rtl">{{ form.realizing_18 }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="sendbtn">
+        <button type="submit" id="send-button">Отправить</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Получаем длительность из модели KRTime
+  const duration = "{{ kr_duration }}"; // Будет передано из view
+  const [hours, minutes, seconds] = duration.split(":").map(Number);
+  let totalSeconds = hours * 3600 + minutes * 60 + seconds;
+
+  function updateTimer() {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    document.getElementById("time").textContent = `${String(hours).padStart(
+      2,
+      "0"
+    )}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+
+    if (totalSeconds <= 0) {
+      clearInterval(timerInterval);
+      submitFormWithDashes();
+      return;
+    }
+
+    totalSeconds--;
+  }
+
+  function submitFormWithDashes() {
+    // Заполняем все текстовые поля тире и отправляем форму
+    const form = document.getElementById("end_solution");
+    if (!form) return;
+    const inputs = form.querySelectorAll('input[type="text"]');
+    inputs.forEach((input) => {
+      if (!input.value || String(input.value).trim() === "") {
+        input.value = " ";
+      }
+    });
+
+    // Создаем и нажимаем кнопку отправки
+    const submitButton = document.createElement("button");
+    submitButton.type = "submit";
+    submitButton.name = "send-button";
+    submitButton.value = "1";
+    submitButton.style.display = "none";
+    form.appendChild(submitButton);
+    submitButton.click();
+  }
+
+  // Обновляем таймер каждую секунду
+  const timerInterval = setInterval(updateTimer, 1000);
+  updateTimer(); // Запускаем сразу
+
+  function formatNumberInput(input, selectionStart, key) {
+    let rawValue = input.value;
+
+    // Ограничиваем до 8 цифр
+    if (rawValue.length > 9) {
+      rawValue = rawValue.slice(0, 9);
+    }
+
+    if (rawValue.length < 9 && rawValue.includes('.')) {
+      rawValue = rawValue.replace('.', '');
+    }
+
+    if (rawValue.length > 1 && selectionStart + 1 === rawValue.length && rawValue.length < 9) {
+      rawValue = key + rawValue.slice(0, -1);
+    }
+
+    console.log(rawValue);
+
+    // Форматируем при 8 символах
+    if (rawValue.length === 8 && !rawValue.includes('.')) {
+      rawValue = rawValue.slice(0, 1) + '.' + rawValue.slice(1);
+    }
+
+    input.value = rawValue;
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const inputs = document.querySelectorAll('input[type="text"]');
+    inputs.forEach((inputField) => {
+      document.addEventListener('keydown', function (event) {
+        const key = event.key; // Получаем нажатую клавишу
+
+        if (key !== '0' && key !== '1' && key !== '-' && key !== ' ' &&
+          key !== 'Backspace' && key !== 'Delete' &&
+          key !== 'ArrowLeft' && key !== 'ArrowRight' &&
+          !event.metaKey && !event.ctrlKey) { // Разрешаем Cmd/Ctrl+A, Cmd/Ctrl+C, Cmd/Ctrl+V
+          event.preventDefault(); // Запрещаем ввод других символов
+        }
+        else if (key === '0' || key === '1') {
+          inputField.addEventListener("input", function () {
+            formatNumberInput(this, this.selectionStart - 1, key);
+          });
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}

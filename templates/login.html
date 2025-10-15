@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block extra_css %}{% endblock %}
+
+{% block content %}
+<div class="auth-window">
+  <h1>Вход</h1>
+  <form method="post" id="form_submit">
+    {% csrf_token %}
+    {% for f in form %}
+      <div class="input-box">{{ f }}</div>
+    {% endfor %}
+
+    <button type="submit" class="btn">Войти</button>
+    <div style="margin-top: 12px; text-align: center;">
+      <a href="{% url 'register' %}" class="btn">Нет аккаунта?</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

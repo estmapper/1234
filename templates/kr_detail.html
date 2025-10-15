@@ -1,0 +1,448 @@
+{% extends 'base/base.html' %}
+{% load static %} 
+{% load custom_filters %} 
+{% block extra_css %}{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>{{ pagename }}</h1>
+
+      {% comment %} <!-- Отладочная информация -->
+      <div
+        style="
+          background: #f0f0f0;
+          padding: 10px;
+          margin: 10px 0;
+          border: 1px solid #ccc;
+        "
+      >
+        <h3>Отладочная информация:</h3>
+        <p>user_answers: {{ user_answers }}</p>
+        <p>answers: {{ answers }}</p>
+        <p>user_answers.straight_1: {{ user_answers.straight_1 }}</p>
+        <p>answers.straight_1: {{ answers.straight_1 }}</p>
+        <p>
+          Результат фильтра: {{ user_answers.straight_1|compare_chars:answers.straight_1|safe }}
+        </p>
+        <p>Простой тест фильтра: {{ "123"|compare_chars:"123"|safe }}</p>
+        <p>Тест с разными значениями: {{ "123"|compare_chars:"124"|safe }}</p>
+      </div> {% endcomment %}
+
+      {% if result %}
+      {% if kr_number == "Контрольная работа №2" %}
+      <div class="kr-info">
+        <div class="result-summary">
+          <h2>Результаты</h2>
+          <p>A: {{ result.number1 }}</p>
+          <p>B: {{ result.number2 }}</p>
+          <p>Оценка: {{ result.result_number }}</p>
+          <p>Баллы: {{ result.rating }}</p>
+        </div>
+      {% endif %}
+      {% if kr_number == "Контрольная работа №1" %}
+      <div class="kr-info">
+        <div class="result-summary">
+          <h2>Результаты</h2>
+          <p>Число А: {{ result.number }}</p>
+          <p>Число B: {{ result.number_sec }}</p>
+          <p>Число C: {{ number_trd }}</p>
+          <p>Число D: {{ number_fth }}</p>
+          <p>Степень: {{ result.p_system }}</p>
+          <p>Оценка: {{ result.result_number }}</p>
+          <p>Баллы: {{ result.rating }}</p>
+        </div>
+      {% endif %}
+        <div class="answers-comparison">
+          <h2>Сравнение ответов</h2>
+          <div class="comparison-table">
+            <table class="table">
+              <tbody>
+                {% if kr_number == "Контрольная работа №2" %}
+                <div class="tables-container">
+                  <table class="solutiontable">
+                    <thead>
+                      <tr>
+                        <th>Переменная</th>
+                        <th>Прямой</th>
+                        <th>Обратный</th>
+                        <th>Дополнительный</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="namevar">A</td>
+                        <td class="character-comparison">
+                          {{ user_answers.straight_1|compare_chars:answers.straight_1|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.reversed_1|compare_chars:answers.reversed_1|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.additional_1|compare_chars:answers.additional_1|safe }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="namevar">-A</td>
+                        <td class="character-comparison">
+                          {{ user_answers.straight_2|compare_chars:answers.straight_2|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.reversed_2|compare_chars:answers.reversed_2|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.additional_2|compare_chars:answers.additional_2|safe }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="namevar">B</td>
+                        <td class="character-comparison">
+                          {{ user_answers.straight_3|compare_chars:answers.straight_3|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.reversed_3|compare_chars:answers.reversed_3|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.additional_3|compare_chars:answers.additional_3|safe }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="namevar">-B</td>
+                        <td class="character-comparison">
+                          {{ user_answers.straight_4|compare_chars:answers.straight_4|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.reversed_4|compare_chars:answers.reversed_4|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.additional_4|compare_chars:answers.additional_4|safe }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <!-- Таблица для умножения на степени -->
+                  <table class="solutiontable">
+                    <thead>
+                      <tr>
+                        <th>Переменная</th>
+                        <th>Прямой</th>
+                        <th>Обратный</th>
+                        <th>Дополнительный</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="namevar">A * 2<sup>-n</sup></td>
+                        <td class="character-comparison">
+                          {{ user_answers.straight_5|compare_chars:answers.straight_5|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.reversed_5|compare_chars:answers.reversed_5|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.additional_5|compare_chars:answers.additional_5|safe }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="namevar">A * 2<sup>m</sup></td>
+                        <td class="character-comparison">
+                          {{ user_answers.straight_6|compare_chars:answers.straight_6|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.reversed_6|compare_chars:answers.reversed_6|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.additional_6|compare_chars:answers.additional_6|safe }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="namevar">A * 2<sup>q</sup></td>
+                        <td class="character-comparison">
+                          {{ user_answers.straight_7|compare_chars:answers.straight_7|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.reversed_7|compare_chars:answers.reversed_7|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.additional_7|compare_chars:answers.additional_7|safe }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="namevar">B * 2<sup>-n</sup></td>
+                        <td class="character-comparison">
+                          {{ user_answers.straight_8|compare_chars:answers.straight_8|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.reversed_8|compare_chars:answers.reversed_8|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.additional_8|compare_chars:answers.additional_8|safe }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="namevar">B * 2<sup>m</sup></td>
+                        <td class="character-comparison">
+                          {{ user_answers.straight_9|compare_chars:answers.straight_9|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.reversed_9|compare_chars:answers.reversed_9|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.additional_9|compare_chars:answers.additional_9|safe }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="namevar">B * 2<sup>q</sup></td>
+                        <td class="character-comparison">
+                          {{ user_answers.straight_10|compare_chars:answers.straight_10|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.reversed_10|compare_chars:answers.reversed_10|safe }}
+                        </td>
+                        <td class="character-comparison">
+                          {{ user_answers.additional_10|compare_chars:answers.additional_10|safe }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                    <!-- Таблица для операций с дополнительным кодом (повёрнута на 90 градусов) -->
+                    <table class="solutiontable">
+                    <thead>
+                      <tr>
+                      <th></th>
+                      <th>A(доп) + B(доп)</th>
+                      <th>-A(доп) + B(доп)</th>
+                      <th>A(доп) - B(доп)</th>
+                      <th>-A(доп) - B(доп)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                      <td class="namevar">Промежуточный</td>
+                      <td class="character-comparison">
+                        {{ user_answers.temp_11|compare_chars:answers.temp_11|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.temp_12|compare_chars:answers.temp_12|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.temp_13|compare_chars:answers.temp_13|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.temp_14|compare_chars:answers.temp_14|safe }}
+                      </td>
+                      </tr>
+                      <tr>
+                      <td class="namevar">Коррекция</td>
+                      <td class="character-comparison">
+                        {{ user_answers.correction_11|compare_chars:answers.correction_11|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.correction_12|compare_chars:answers.correction_12|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.correction_13|compare_chars:answers.correction_13|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.correction_14|compare_chars:answers.correction_14|safe }}
+                      </td>
+                      </tr>
+                      <tr>
+                      <td class="namevar">Результат</td>
+                      <td class="character-comparison">
+                        {{ user_answers.result_11|compare_chars:answers.result_11|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.result_12|compare_chars:answers.result_12|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.result_13|compare_chars:answers.result_13|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.result_14|compare_chars:answers.result_14|safe }}
+                      </td>
+                      </tr>
+                      <tr>
+                      <td class="namevar">Осмысление</td>
+                      <td class="character-comparison">
+                        {{ user_answers.realizing_11|compare_chars:answers.realizing_11|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.realizing_12|compare_chars:answers.realizing_12|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.realizing_13|compare_chars:answers.realizing_13|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.realizing_14|compare_chars:answers.realizing_14|safe }}
+                      </td>
+                      </tr>
+                    </tbody>
+                    </table>
+
+                    <!-- Таблица для операций с обратным кодом (повёрнута на 90 градусов) -->
+                    <table class="solutiontable">
+                    <thead>
+                      <tr>
+                      <th></th>
+                      <th>A(обр) + B(обр)</th>
+                      <th>-A(обр) + B(обр)</th>
+                      <th>A(обр) - B(обр)</th>
+                      <th>-A(обр) - B(обр)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                      <td class="namevar">Промежуточный</td>
+                      <td class="character-comparison">
+                        {{ user_answers.temp_15|compare_chars:answers.temp_15|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.temp_16|compare_chars:answers.temp_16|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.temp_17|compare_chars:answers.temp_17|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.temp_18|compare_chars:answers.temp_18|safe }}
+                      </td>
+                      </tr>
+                      <tr>
+                      <td class="namevar">Коррекция</td>
+                      <td class="character-comparison">
+                        {{ user_answers.correction_15|compare_chars:answers.correction_15|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.correction_16|compare_chars:answers.correction_16|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.correction_17|compare_chars:answers.correction_17|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.correction_18|compare_chars:answers.correction_18|safe }}
+                      </td>
+                      </tr>
+                      <tr>
+                      <td class="namevar">Результат</td>
+                      <td class="character-comparison">
+                        {{ user_answers.result_15|compare_chars:answers.result_15|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.result_16|compare_chars:answers.result_16|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.result_17|compare_chars:answers.result_17|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.result_18|compare_chars:answers.result_18|safe }}
+                      </td>
+                      </tr>
+                      <tr>
+                      <td class="namevar">Осмысление</td>
+                      <td class="character-comparison">
+                        {{ user_answers.realizing_15|compare_chars:answers.realizing_15|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.realizing_16|compare_chars:answers.realizing_16|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.realizing_17|compare_chars:answers.realizing_17|safe }}
+                      </td>
+                      <td class="character-comparison">
+                        {{ user_answers.realizing_18|compare_chars:answers.realizing_18|safe }}
+                      </td>
+                      </tr>
+                    </tbody>
+                    </table>
+                </div>
+                {% endif %}
+
+              {% if kr_number == "Контрольная работа №1" %}
+                 <div class="solution">
+                  <table class="solutiontable">
+                    <thead>
+                      <tr id="name_row_table1">
+                        <th>Система счисления</th>
+                        <th>Целая часть</th>
+                        <th>Дробная часть</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr id="first_row_table1">
+                    <td class="namevar">Десятичкая</td>
+                    <td>{{ number }}</td>
+                      <td>{{ number_add }}</td>
+                    </tr>
+                  <tr id="second_row_table1">
+                    <td class="namevar">Двоичная</td>
+                    <td>{{ user_answers.int_bin|compare_chars:answers.int_bin|safe }}</td>
+                    <td>{{ user_answers.float_bin|compare_chars:answers.float_bin|safe }}</td>
+                  </tr>
+                  <tr id="third_row_table1">
+                    <td class="namevar">Восьмеричная</td>
+                    <td>{{ user_answers.int_oct|compare_chars:answers.int_oct|safe  }}</td>
+                    <td>{{ user_answers.float_oct|compare_chars:answers.float_oct|safe }}</td>
+                  </tr>
+                  <tr id="fourth_row_table1">
+                    <td class="namevar">Шестнадцатеричная</td>
+                    <td>{{ user_answers.int_hex|compare_chars:answers.int_hex|safe }}</td>
+                    <td>{{ user_answers.float_hex|compare_chars:answers.float_hex|safe }}</td>
+                    </tr>
+                  </tbody>
+                  </table>
+                  </div>
+                <div class="solution">
+          <table class="solutiontable">
+            <thead>
+              <tr id="name_row_table2">
+                <th></th>
+                <th>Из десятичной</th>
+                <th>Из двоичной</th>
+                <th>Из {{ user_answers.p_system }}-ной</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="first_row_table2">
+                <td class="namevar">В десятичную</td>
+                <td>{{ result.number_sec }}</td>
+                <td>{{ user_answers.int_trd|compare_chars:answers.int_trd|safe }}</td>
+                <td>{{ user_answers.int_fth|compare_chars:answers.int_fth|safe }}</td>
+              </tr>
+              <tr id="second_row_table2">
+                <td class="namevar">В двоичную</sup></td>
+                <td>{{ user_answers.int_sec_bin|compare_chars:answers.int_sec_bin|safe }}</td>
+                <td>{{ number_trd }}</td>
+                <td>{{ user_answers.int_fth_bin|compare_chars:answers.int_fth_bin|safe }}</td>
+              </tr>
+              <tr id="third_row_table2">
+                <td class="namevar">В {{ result.p_system }} -ную</td>
+                <td>{{ user_answers.int_sec_p|compare_chars:answers.int_sec_p|safe }}</td>
+                <td>{{ user_answers.int_trd_p|compare_chars:answers.int_trd_p|safe }}</td>
+                <td>{{ number_fth }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="alert alert-info">
+        <p>Контрольная работа еще не написана или недоступна.</p>
+      </div>
+      {% endif %}
+
+      <div class="back-button">
+        <a href="{% url 'account' %}" class="btn">
+          Вернуться в личный кабинет
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
